@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Add Application - Job Tracker{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>Add New Application</h2>
+    </div>
+    
+    <form method="POST" action="{{ url_for('add_application') }}">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-group">
+            {{ form.company_name.label }}
+            {{ form.company_name(class="form-control") }}
+            {% if form.company_name.errors %}
+                {% for error in form.company_name.errors %}
+                    <span style="color: #e74c3c;">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {{ form.job_title.label }}
+            {{ form.job_title(class="form-control") }}
+            {% if form.job_title.errors %}
+                {% for error in form.job_title.errors %}
+                    <span style="color: #e74c3c;">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {{ form.job_description.label }}
+            {{ form.job_description(class="form-control", rows=5) }}
+        </div>
+        
+        <div class="form-group">
+            {{ form.status.label }}
+            {{ form.status(class="form-control") }}
+        </div>
+        
+        <div class="form-group">
+            {{ form.location.label }}
+            {{ form.location(class="form-control") }}
+        </div>
+        
+        <div class="form-group">
+            {{ form.application_url.label }}
+            {{ form.application_url(class="form-control", placeholder="https://...") }}
+            {% if form.application_url.errors %}
+                {% for error in form.application_url.errors %}
+                    <span style="color: #e74c3c;">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {{ form.contact_name.label }}
+            {{ form.contact_name(class="form-control") }}
+        </div>
+        
+        <div class="form-group">
+            {{ form.contact_email.label }}
+            {{ form.contact_email(class="form-control") }}
+            {% if form.contact_email.errors %}
+                {% for error in form.contact_email.errors %}
+                    <span style="color: #e74c3c;">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            {{ form.contact_phone.label }}
+            {{ form.contact_phone(class="form-control") }}
+        </div>
+        
+        <div class="form-group">
+            {{ form.salary_expectation.label }}
+            {{ form.salary_expectation(class="form-control", placeholder="e.g., $70,000 - $80,000") }}
+        </div>
+        
+        <div class="form-group">
+            {{ form.resume_version.label }}
+            {{ form.resume_version(class="form-control", placeholder="e.g., v2.0") }}
+        </div>
+        
+        <div class="form-group">
+            {{ form.follow_up_date.label }}
+            {{ form.follow_up_date(class="form-control", placeholder="YYYY-MM-DD HH:MM") }}
+            <small style="color: #7f8c8d;">Format: YYYY-MM-DD HH:MM (e.g., 2024-12-25 14:30)</small>
+        </div>
+        
+        <div class="form-group">
+            {{ form.notes.label }}
+            {{ form.notes(class="form-control", rows=3) }}
+        </div>
+        
+        <div class="actions">
+            {{ form.submit(class="btn btn-success") }}
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
